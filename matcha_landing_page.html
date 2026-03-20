@@ -1,0 +1,386 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MATCHA NEO | The Electric Ceremony</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-variant": "#262626",
+                "surface-bright": "#2c2c2c",
+                "on-tertiary": "#2d6957",
+                "secondary": "#6bfe9c",
+                "surface-container-low": "#131313",
+                "secondary-fixed": "#6bfe9c",
+                "tertiary-fixed": "#bffee6",
+                "on-secondary-fixed-variant": "#006a35",
+                "on-secondary-container": "#e3ffe4",
+                "surface-tint": "#95fd92",
+                "on-tertiary-fixed-variant": "#336f5c",
+                "secondary-dim": "#5bef90",
+                "on-surface-variant": "#adaaaa",
+                "tertiary": "#e6fff4",
+                "error": "#ff7351",
+                "surface-container-high": "#201f1f",
+                "tertiary-container": "#b9f8e1",
+                "on-surface": "#ffffff",
+                "on-tertiary-container": "#23614f",
+                "surface": "#0e0e0e",
+                "tertiary-dim": "#9edbc5",
+                "on-secondary-fixed": "#004a23",
+                "on-primary-fixed-variant": "#006d1d",
+                "background": "#0e0e0e",
+                "primary": "#95fd92",
+                "on-error": "#450900",
+                "surface-dim": "#0e0e0e",
+                "on-secondary": "#005f2f",
+                "on-tertiary-fixed": "#0f5241",
+                "inverse-on-surface": "#565555",
+                "inverse-primary": "#006f1d",
+                "primary-fixed": "#95fd92",
+                "on-primary": "#006119",
+                "error-dim": "#d53d18",
+                "tertiary-fixed-dim": "#b1efd8",
+                "on-primary-fixed": "#004d11",
+                "surface-container": "#1a1919",
+                "surface-container-lowest": "#000000",
+                "secondary-fixed-dim": "#5bef90",
+                "primary-fixed-dim": "#87ee86",
+                "surface-container-highest": "#262626",
+                "error-container": "#b92902",
+                "primary-container": "#50b554",
+                "on-error-container": "#ffd2c8",
+                "inverse-surface": "#fcf9f8",
+                "primary-dim": "#87ee86",
+                "on-primary-container": "#002a06",
+                "on-background": "#ffffff",
+                "outline-variant": "#484847",
+                "outline": "#767575"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { background-color: #0e0e0e; color: #ffffff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glow-primary { box-shadow: 0 0 20px rgba(149, 253, 146, 0.3); }
+        .neon-text-glow { text-shadow: 0 0 10px rgba(149, 253, 146, 0.5); }
+        .glass-card { background: rgba(38, 38, 38, 0.6); backdrop-filter: blur(20px); }
+        .bg-gradient-primary { background: linear-gradient(135deg, #95fd92 0%, #50b554 100%); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#0e0e0e]/80 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto font-['Plus_Jakarta_Sans'] tracking-tight">
+<div class="text-2xl font-bold tracking-tighter text-[#95fd92] drop-shadow-[0_0_8px_rgba(149,253,146,0.4)]" style="">MATCHA NEO</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-[#adaaaa] hover:text-[#95fd92] transition-colors" href="#" style="">Story</a>
+<a class="text-[#adaaaa] hover:text-[#95fd92] transition-colors" href="#services" style="">Services</a>
+<a class="text-[#adaaaa] hover:text-[#95fd92] transition-colors" href="#portfolio" style="">Portfolio</a>
+<a class="text-[#adaaaa] hover:text-[#95fd92] transition-colors" href="#contact" style="">About Us<br></a>
+<button class="bg-gradient-primary text-on-primary px-6 py-2 rounded-xl font-bold scale-95 active:scale-90 transition-transform hover:glow-primary" style="">Order Now</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary" style="">
+<span class="material-symbols-outlined" style="">menu</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on mobile as per requirement) -->
+<aside class="h-full w-20 fixed left-0 top-0 hidden lg:flex flex-col items-center py-10 bg-[#0e0e0e]/95 backdrop-blur-2xl border-r border-[#484847]/15 z-40 shadow-[10px_0_30px_rgba(0,0,0,0.3)]">
+<div class="flex flex-col space-y-12 items-center">
+<div class="text-[#95fd92] font-bold text-xs vertical-text tracking-widest uppercase rotate-180" style="writing-mode: vertical-rl;">FOUNDER</div>
+<div class="flex flex-col space-y-8">
+<a class="text-[#95fd92] relative after:content-[''] after:absolute after:-right-4 after:w-1 after:h-8 after:bg-[#95fd92] after:shadow-[0_0_10px_#95fd92] hover:scale-110 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" data-icon="home" style="">home</span>
+</a>
+<a class="text-[#484847] hover:text-[#95fd92] hover:scale-110 transition-transform" href="#about" style="">
+<span class="material-symbols-outlined" data-icon="person" style="">person</span>
+</a>
+<a class="text-[#484847] hover:text-[#95fd92] hover:scale-110 transition-transform" href="#portfolio" style="">
+<span class="material-symbols-outlined" data-icon="grid_view" style="">grid_view</span>
+</a>
+<a class="text-[#484847] hover:text-[#95fd92] hover:scale-110 transition-transform" href="#contact" style="">
+<span class="material-symbols-outlined" data-icon="mail" style="">mail</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="lg:pl-20">
+<!-- Hero Section -->
+<section class="relative min-height-[1024px] flex items-center justify-center overflow-hidden pt-24 pb-20 px-8">
+<!-- Ambient Glow Effects -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[120px]"></div>
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center z-10">
+<div class="order-2 md:order-1">
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tighter leading-none mb-6" style="">
+                        Matcha Neo - <span class="text-primary neon-text-glow" style="">The Electric Ceremony</span>
+</h1>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-md mb-10 leading-relaxed" style="">
+                        Redefining ancient traditions for the digital generation. Bold, vibrant, and unapologetically modern.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-gradient-primary text-on-primary px-8 py-4 rounded-xl font-bold text-lg hover:glow-primary transition-all duration-300" style="">
+                            Explore Menu
+                        </button>
+<button class="bg-surface-variant/20 backdrop-blur-md border border-primary/30 text-on-surface px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-variant/40 transition-all" style="">
+                            Our Story
+                        </button>
+</div>
+</div>
+<div class="order-1 md:order-2 relative group">
+<div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-75 group-hover:scale-100 transition-transform duration-700"></div>
+<div class="relative rounded-3xl overflow-hidden aspect-[4/5] border border-outline-variant/15">
+<img alt="Founder Portrait" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" data-alt="Stylized portrait of a modern matcha shop founder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRJA26rqWVU7jyBg7sFEwb1GfBar_wTUaFlqnzb07A9-Ro4vDskDUrly7Xok5iX8jDK_8SjsTdcc0drxOgZscwNtn7ZsiFZqai2sGwl8tFnGh2-3A76DxYE5yp5DBuBcX6pjSE1CRCAOzKI-BbHkFl2oF1mc_eGRUiKpwiQjuLDfIBnKmTOfkVKBFKFY0EtA1w_TwtO259WJYM58VO6yTxq43XPnLqq11ji32e3N5V6FbQaPuuA8NH5Afgf3cOfOK1Hnd_6xofyKI" style="">
+</div>
+<!-- Overlapping Typography Decor -->
+<div class="absolute -bottom-6 -left-6 font-headline text-8xl font-black text-primary/10 select-none pointer-events-none" style="">NEO</div>
+</div>
+</div>
+</section>
+<!-- About Me Section -->
+<section class="py-24 px-8 bg-surface-container-low relative" id="about">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-16 items-start">
+<div class="md:sticky md:top-32 w-full md:w-1/3">
+<span class="font-label text-primary tracking-[0.2em] font-bold block mb-4" style="">THE JOURNEY</span>
+<h2 class="font-headline text-4xl md:text-5xl font-bold mb-8 leading-tight" style="">Beyond the Whisk.</h2>
+<div class="flex gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="">Ceremonial</span>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider" style="">Uji-Source</span>
+</div>
+</div>
+<div class="w-full md:w-2/3 space-y-8">
+<div class="glass-card p-10 rounded-xl border border-outline-variant/10">
+<p class="text-xl md:text-2xl font-light leading-relaxed text-on-surface mb-6" style="">
+                                "The energy of Saigon and Hanoi isn't just about speed—it's about a new kind of mindfulness. I saw Vietnamese youth craving something that spoke to their aesthetic while honoring quality."
+                            </p>
+<p class="text-on-surface-variant leading-relaxed" style="">
+                                Matcha Neo started as a rebellion against standard, sugary coffee culture. We sourced the finest ceremonial grade matcha from Uji and brought it to the neon-lit streets. It's not just a drink; it's a social pulse, a vibrant green light in the dark.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container">
+<img alt="Matcha whisking process" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" data-alt="Traditional matcha whisking process with high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo5Ih641i9gGGnFmW9xjHLEcwNAeCDexrJDLIOk66nj-FA2ptp2GDMztRGJY03gl-r1O5b2rMBXAwoYQvzdsNQK-_jG3ABCGnsSyBGluygg3FIGN2LATeWlK2-_NsA0g51tEiW_XHnX_y8Y0T_1PlVq7cdR5TeLN2ZaxxO519UdFoYtENPKDmdO3WzlXVM4Bf178vgyT5MtioKU_PH8wBVzubQjq6bNSVjp5_fC4BIGAa8F6DBY7qYWdyRVIsvXOGosggqD5IsDws" style="">
+</div>
+<div class="aspect-square rounded-xl overflow-hidden bg-surface-container mt-8">
+<img alt="Matcha drink" class="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" data-alt="Modern iced matcha latte with visible layers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdrTTJIl8jzv9PyBDjosFjmK6JSTsZ5zA4fZLaP8w9Ed24haPFieZppnyRhmp1ncp94n2zah0bl0ZKWiHMUtgCdLI4SjnTpgh3R3twxRWb9OMDIEzPr8doC6tcfyKh6GuNyhVEOtlU-0j6WORXKy4ROxJ7g9SQhm95d6Tbpgmw2ntdht5mHuA4H4TK2pQc1JYxou4yKBwOxNAhHQ9Gdi1-IxMBZ9wmzv440tcT5LrxrKYWOYlN-p06UvomeB3nMBqTDm_buBGWeRQ" style="">
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 px-8 relative" id="services">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16 text-center">
+<h2 class="font-headline text-4xl md:text-6xl font-bold mb-4" style="">The Electric Services</h2>
+<p class="text-on-surface-variant max-w-xl mx-auto" style="">Fusing artisanal expertise with modern F&amp;B strategy.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Service Card 1 -->
+<div class="group relative p-8 rounded-xl bg-surface-container-high border border-primary/20 hover:border-primary transition-all duration-500 overflow-hidden">
+<div class="absolute -right-8 -bottom-8 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-9xl" data-icon="restaurant_menu" style="">restaurant_menu</span>
+</div>
+<div class="mb-6 text-primary">
+<span class="material-symbols-outlined !text-4xl" data-icon="menu_book" style="">menu_book</span>
+</div>
+<h3 class="text-xl font-bold mb-3" style="">Curated Drink Menu</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed" style="">Bespoke matcha recipes tailored to your brand's unique identity and demographic.</p>
+</div>
+<!-- Service Card 2 -->
+<div class="group relative p-8 rounded-xl bg-surface-container-high border border-primary/20 hover:border-primary transition-all duration-500 overflow-hidden">
+<div class="absolute -right-8 -bottom-8 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-9xl" data-icon="school" style="">school</span>
+</div>
+<div class="mb-6 text-primary">
+<span class="material-symbols-outlined !text-4xl" data-icon="groups" style="">groups</span>
+</div>
+<h3 class="text-xl font-bold mb-3" style="">Matcha Workshops</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed" style="">Interactive sessions teaching the art and science of the perfect whisk and modern mixology.</p>
+</div>
+<!-- Service Card 3 -->
+<div class="group relative p-8 rounded-xl bg-surface-container-high border border-primary/20 hover:border-primary transition-all duration-500 overflow-hidden">
+<div class="absolute -right-8 -bottom-8 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-9xl" data-icon="celebration" style="">celebration</span>
+</div>
+<div class="mb-6 text-primary">
+<span class="material-symbols-outlined !text-4xl" data-icon="local_bar" style="">local_bar</span>
+</div>
+<h3 class="text-xl font-bold mb-3" style="">Event Catering</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed" style="">A high-energy pop-up experience for corporate events, fashion launches, and festivals.</p>
+</div>
+<!-- Service Card 4 -->
+<div class="group relative p-8 rounded-xl bg-surface-container-high border border-primary/20 hover:border-primary transition-all duration-500 overflow-hidden">
+<div class="absolute -right-8 -bottom-8 text-primary/5 group-hover:text-primary/10 transition-colors">
+<span class="material-symbols-outlined !text-9xl" data-icon="campaign" style="">campaign</span>
+</div>
+<div class="mb-6 text-primary">
+<span class="material-symbols-outlined !text-4xl" data-icon="trending_up" style="">trending_up</span>
+</div>
+<h3 class="text-xl font-bold mb-3" style="">F&amp;B Consulting</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed" style="">Strategic social media and brand positioning for the next generation of drink shops.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Gallery -->
+<section class="py-24 bg-surface-container-lowest" id="portfolio">
+<div class="px-8 max-w-7xl mx-auto mb-12 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-4xl md:text-5xl font-bold" style="">The Gallery</h2>
+<p class="text-on-surface-variant mt-2" style="">Visualizing the neon green aesthetic.</p>
+</div>
+<button class="text-primary font-bold hover:underline" style="">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 h-[600px] overflow-hidden">
+<div class="space-y-4">
+<div class="rounded-xl overflow-hidden h-[300px] relative group">
+<img alt="Matcha Latte Art" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Close up of matcha latte art heart shape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqDaydncDGf8kc43x7AzqaLAp7oqDfFUSJ7TUPTQ6I2W3HbFrWzd42CFcKApQc98Q0j_knPPgpRHNWbaC2zsvQmcXl61Qlk2CDCo47ZO4k5IvuULaBb3n50nb-HoWNM5baMEmniQAiwRYejif-G0QlUMPKz9I6Vu3yJqgFAThOqGqdz4m4c_zYhLp5iOZx-EvOeaXjuc4MTNh8wwfyVyJ3ZHG-tYYlaibZBngQI6ayTfDSPDsaQPs9qNdUZd1cYYI-ixWdKlQX1T8" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="rounded-xl overflow-hidden h-[200px] relative group">
+<img alt="Iced Matcha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Iced matcha tea in a minimal glass" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLHSNa97Tzum9MXzOtePJ2dNYUpChFZxGQIgiNPR3fLNSeZCjD-9in8yEXD86vp4d0ITN_NwH4hNB_tZM0Hxs4SnxkUNixeFl8Hs0O0pDLkjL6FTFms0jDomtj9BkMyyrt_qnoNPZZngjKOPZgErPVH5z3RqM81J3z3s1bfzva1C2JPtC5Vu1eYoyrjLnkIM7mOdew1L-ZlFJY6ZxrCsj1Tdq-s5HLNG08qgP6qiv22pfY9ObLDu7S4zuRIxF_6yQtmKr686UM5Zw" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="space-y-4 pt-12">
+<div class="rounded-xl overflow-hidden h-[250px] relative group">
+<img alt="Matcha fruit mix" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Vibrant green matcha mixed with strawberries" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJClswM3Gbl6f_gJETrB6DiyQOAzRF7wX0WmUII6o9qQz1EH_7znnlcmeZbZu-rxU0yu9Yjydp8Wh1PSIJ6LdbJtuOnaigja1Qk4g5vw6CgIzKmDYtcEo37Vqgrux-rk4hN00FShWo51qPReu9jr960APCynvYwNnnNXm-IR3OifN4vKrhtc_ekIq981uxSX5g2wk9ZNBVDNbgUYuZWWjZToiOr8ekl1Sf_Pd4ygnL-u1rs0SST4lNtJ04DvDfvUw2lGqZkiIk5wU" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="rounded-xl overflow-hidden h-[350px] relative group">
+<img alt="Ceremonial whisking" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Cinematic shot of matcha being prepared" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzKuusHnrMErcf4m_EnTavSdXrrMoaPQP8LYooncpUsubK6kvikZ0rFerwzxCyQUwq7MwYlBFmWWNWGozfRSZMstkg99gXKS8x3pcZ6FiR8SP0s0yTBxwS_8-q2iG318WM8dAX9lYVbXbL_BO7QAcFs_MlxsFfD9TfNIPkyfeYlPeuA9jOXEnrwkvhwVRgrS1-0WfLYA5z59JlrCSfkQqp6mAxngCZ6oh6aDqaX2bTdlrWxcPsQaTrHDBVM2KjeF-59xhHDPHJ7Sk" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="rounded-xl overflow-hidden h-[400px] relative group">
+<img alt="Matcha powder detail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Macro photo of vibrant green matcha powder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUlqfCfJZQebGznmp97LKSNpfFh966Ax6rm9HP2dQ-Hfto_Ncx3RitGuTR5nZ2YHkZ3ZHcR2-_wMPqmQDvAUYerrpVqWXAYgHmg_qXhFHVPTreFOY3BTvSA40geGsVumX_nm6imRwUSb45tzFbxxxTmyTy8JLxTZapNknIqyLHBFCW8z_08SYQ8WyVCOR-wsgiflEUE9pwa2LxEpqQBf4UwkWEsrLD1DSMwjXxRkj3EKo69zprTrR71JMPzSzCgc-KuEYuy8rb3aA" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="rounded-xl overflow-hidden h-[200px] relative group">
+<img alt="Matcha cafe interior" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Sleek modern cafe interior with neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByh3HNXF6udjYFtfLPirjzNG0abe4tmuC0vrQoi6rhRUmo_uhujyNcUkBplLEigQQaG-VePwb6tlOi34BWQn_sKA6YPywFG1UDuEUbK8D46B5WJKtcW1jYyK9u0a-IyOSO5XpX3TdYnVpWZnDnE-6AEAzhK8WnhQsaNgDH5VosrSrG0WlOSr23PnuMDZbHpXUyEOmyEtccK-ZtFIYhNvgWDvD_A-d3FBAlmPrddtcruPyZWhi_z_iTDTsJxRBK4pSmtxphUiOaeJ8" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="space-y-4 pt-8">
+<div class="rounded-xl overflow-hidden h-[200px] relative group">
+<img alt="Matcha dessert" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Gourmet matcha dessert plating" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBSX_KOW-d1NzMltOGryjJ5n3pYwC6K4MWRtsxQ2GgX1rGFmJDnef_oY1lRbOcMETsabSXpdXjbS0VwLFzu282BMfgvEH3uwXEpJnYZqzYgJjWBH_LvklE9p1ZvNpq8QLO6KV189FwpgnQFeGcCMNWqr00Dvy8Dk4IWFxFLNOHGnQmv4hywLdwNFzbu_f8IzTyGxakfsTTkKincTnOiDNPTxsM2-VsyDHVZMWH0yHLardtEbdXCXkhwb8_Z77Ja5RxcjHRzs3pSwM" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="rounded-xl overflow-hidden h-[300px] relative group">
+<img alt="Matcha ceremony set" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Modern matcha preparation set on black marble" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-_QOO-G0P1Q4_BF16NBysO-2Ag_t3Boma4sU-O7dz1ZTtwtvEUOV94EcRVtPBKVaDPfAjSYuxStSE7-b92-HBozahd28yloGF-Wze1u4UJQuo2iltlSpdCMD9vdZcoS00wX0m4fQQeBav8zqfirRCslGZ5VKMJq0PoTrWum2E76qqAPEM70mFIPzg-zAr--33vaNJytseXUEy_rIgOpTb8RpdfVE3GPSuo49hH4yF3G5Y6vU691hzX3xdIQAIJCoh5RpUn3DAhkA" style="">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-24 px-8 bg-surface-container-low" id="contact">
+<div class="max-w-4xl mx-auto">
+<div class="grid md:grid-cols-2 gap-16">
+<div>
+<h2 class="font-headline text-4xl font-bold mb-6" style="">Let's Brew Synergy.</h2>
+<p class="text-on-surface-variant mb-10 leading-relaxed" style="">
+                            Whether you want a custom menu for your cafe or a neon-lit workshop for your team, let's talk.
+                        </p>
+<div class="space-y-6">
+<div class="flex items-center space-x-4 group">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="alternate_email" style="">alternate_email</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest" style="">Email</p>
+<p class="font-bold" style="">hello@matchaneo.com</p>
+</div>
+</div>
+<div class="flex items-center space-x-4 group">
+<div class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="location_on" style="">location_on</span>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest" style="">Location</p>
+<p class="font-bold" style="">District 1, Ho Chi Minh City</p>
+</div>
+</div>
+</div>
+<div class="mt-12 flex space-x-6">
+<a class="text-[#adaaaa] hover:text-primary transition-colors hover:scale-110 transform" href="#" style="">Instagram</a>
+<a class="text-[#adaaaa] hover:text-primary transition-colors hover:scale-110 transform" href="#" style="">TikTok</a>
+<a class="text-[#adaaaa] hover:text-primary transition-colors hover:scale-110 transform" href="#" style="">LinkedIn</a>
+</div>
+</div>
+<form class="space-y-6 glass-card p-8 rounded-2xl border border-outline-variant/10">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2" style="">Name</label>
+<input class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-lg text-on-surface p-4 transition-all" placeholder="Enter your name" type="text">
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2" style="">Email</label>
+<input class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-lg text-on-surface p-4 transition-all" placeholder="your@email.com" type="email">
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2" style="">Message</label>
+<textarea class="w-full bg-surface-container-highest border-0 border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-lg text-on-surface p-4 transition-all" placeholder="How can we help?" rows="4"></textarea>
+</div>
+<button class="w-full bg-gradient-primary text-on-primary py-4 rounded-xl font-bold text-lg hover:glow-primary transition-all duration-300" type="submit" style="">
+                            Send Message
+                        </button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-[#131313] font-['Inter'] text-sm tracking-widest uppercase">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 w-full max-w-7xl mx-auto">
+<div class="text-[#95fd92] font-black text-xl" style="">MATCHA NEO</div>
+<div class="text-[#adaaaa] text-center md:text-left" style="">
+                    © 2024 MATCHA NEO. THE ELECTRIC CEREMONY.
+                </div>
+<div class="flex space-x-8">
+<a class="text-[#adaaaa] hover:text-[#95fd92] hover:drop-shadow-[0_0_5px_rgba(149,253,146,0.8)] transition-all duration-300" href="#" style="">Instagram</a>
+<a class="text-[#adaaaa] hover:text-[#95fd92] hover:drop-shadow-[0_0_5px_rgba(149,253,146,0.8)] transition-all duration-300" href="#" style="">TikTok</a>
+<a class="text-[#adaaaa] hover:text-[#95fd92] hover:drop-shadow-[0_0_5px_rgba(149,253,146,0.8)] transition-all duration-300" href="#" style="">LinkedIn</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 w-full bg-[#0e0e0e]/90 backdrop-blur-xl py-4 px-6 flex justify-around items-center z-50">
+<a class="text-[#95fd92] flex flex-col items-center" href="#" style="">
+<span class="material-symbols-outlined" data-icon="home" style="">home</span>
+<span class="text-[10px] mt-1" style="">Home</span>
+</a>
+<a class="text-[#adaaaa] flex flex-col items-center" href="#about" style="">
+<span class="material-symbols-outlined" data-icon="person" style="">person</span>
+<span class="text-[10px] mt-1" style="">About</span>
+</a>
+<a class="text-[#adaaaa] flex flex-col items-center" href="#portfolio" style="">
+<span class="material-symbols-outlined" data-icon="grid_view" style="">grid_view</span>
+<span class="text-[10px] mt-1" style="">Gallery</span>
+</a>
+<a class="text-[#adaaaa] flex flex-col items-center" href="#contact" style="">
+<span class="material-symbols-outlined" data-icon="mail" style="">mail</span>
+<span class="text-[10px] mt-1" style="">Contact</span>
+</a>
+</nav>
+</body></html>
