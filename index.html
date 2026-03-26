@@ -383,4 +383,199 @@
 <span class="text-[10px] mt-1" style="">Contact</span>
 </a>
 </nav>
+
+<!-- Chatbot UI -->
+<div id="chatbot-container" class="fixed bottom-[88px] md:bottom-24 right-6 md:right-8 z-[100] flex flex-col hidden">
+    <div class="glass-card w-[calc(100vw-3rem)] md:w-80 h-[28rem] rounded-2xl border border-primary/20 flex flex-col overflow-hidden shadow-2xl shadow-primary/20 backdrop-blur-xl bg-[#0e0e0e]/95">
+        <!-- Header -->
+        <div class="bg-gradient-primary px-4 py-3 flex justify-between items-center shrink-0">
+            <h3 class="font-bold text-[#004d11] flex items-center gap-2 text-sm">
+                <span class="material-symbols-outlined text-base">smart_toy</span>
+                Neo Assistant
+            </h3>
+            <button id="close-chatbot" class="text-[#004d11] hover:text-[#002a06] transition-colors flex items-center justify-center p-1 rounded-full hover:bg-black/10">
+                <span class="material-symbols-outlined text-lg">close</span>
+            </button>
+        </div>
+        <!-- Body (Messages Area) -->
+        <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto flex flex-col gap-3 font-body text-sm no-scrollbar scroll-smooth">
+            <!-- Initial Message -->
+            <div class="bg-surface-variant/40 text-on-surface p-3 rounded-xl rounded-tl-none self-start max-w-[85%] border border-outline-variant/10 leading-relaxed drop-shadow-sm">
+                Xin chào! Tôi có thể giúp gì cho bạn?
+            </div>
+        </div>
+        <!-- Footer (Input Area) -->
+        <div class="p-3 border-t border-outline-variant/10 bg-surface/80 shrink-0">
+            <form id="chatbot-form" class="flex gap-2 relative items-end">
+                <textarea id="chatbot-input" class="flex-1 bg-surface-container border border-outline-variant/20 focus:border-primary focus:ring-1 focus:ring-primary/20 rounded-xl py-2.5 px-3 text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all outline-none resize-none no-scrollbar h-10 max-h-24" placeholder="Nhập tin nhắn..." autocomplete="off" rows="1"></textarea>
+                <button type="submit" class="bg-gradient-primary text-[#004d11] w-10 h-10 rounded-xl flex items-center justify-center hover:glow-primary hover:scale-105 active:scale-95 transition-all shrink-0 p-0 shadow-sm border border-primary/50">
+                    <span class="material-symbols-outlined text-base font-bold">send</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Action Button -->
+<button id="chatbot-fab" class="fixed bottom-24 md:bottom-8 right-6 md:right-8 z-[90] w-14 h-14 bg-gradient-primary rounded-full hover:glow-primary hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center text-[#004d11] shadow-[0_0_20px_rgba(149,253,146,0.2)] group border border-primary/50">
+    <span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">chat</span>
+</button>
+
+<!-- Script Tích hợp API Chatbot Custom LLM (OpenAI Compatible) -->
+<script type="module">
+    import OpenAI from 'https://esm.sh/openai';
+
+    /**
+     * Khởi tạo đối tượng liên kết tới API của Custom LLM.
+     * Cung cấp Base URL riêng, API key và cấp quyền chạy client trên trình duyệt.
+     */
+    const customChatbotClient = new OpenAI({
+        baseURL: 'https://9router.vuhai.io.vn/v1',
+        apiKey: 'sk-4bd27113b7dc78d1-lh6jld-f4f9c69f',
+        dangerouslyAllowBrowser: true 
+    });
+
+    /**
+     * Gửi tin nhắn của người dùng tới chatbot và nhận lại câu trả lời từ model LLM.
+     * @param {string} userMessageText - Chuỗi ký tự biểu diễn tin nhắn của người dùng.
+     * @returns {Promise<string>} Phản hồi text từ chatbot API.
+     */
+    async function receiveChatbotResponse(userMessageText) {
+        try {
+            const chatbotCompletionResult = await customChatbotClient.chat.completions.create({
+                model: 'ces-chatbot-gpt-5.4',
+                messages: [
+                    { role: 'system', content: 'Bạn là trợ lý ảo thân thiện, hỗ trợ giải đáp khách hàng về các sản phẩm và dịch vụ của Matcha Neo.' },
+                    { role: 'user', content: userMessageText }
+                ]
+            });
+            
+            return chatbotCompletionResult.choices[0].message.content;
+        } catch (apiConnectionError) {
+            console.error('Có lỗi xảy ra khi gọi API chatbot:', apiConnectionError);
+            return 'Xin lỗi, trợ lý ảo hiện tại đang gặp sự cố kết nối. Vui lòng thử lại sau.';
+        }
+    }
+
+    // Đưa hàm xử lý ra global scope (window) để các file JS/UI khác dễ dàng gọi tới.
+    window.receiveChatbotResponse = receiveChatbotResponse;
+
+    // --- LOGIC GIAO DIỆN CHATBOT (UI XỬ LÝ) ---
+    const chatbotFab = document.getElementById('chatbot-fab');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatbot = document.getElementById('close-chatbot');
+    const chatbotForm = document.getElementById('chatbot-form');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+
+    /**
+     * Cuộn khung chat xuống dưới cùng
+     */
+    function scrollToBottom() {
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    /**
+     * Biến đổi chuỗi text thành chuỗi an toàn để hiển thị HTML (chặn XSS cơ bản)
+     * @param {string} text 
+     * @returns {string} Chuỗi an toàn
+     */
+    function escapeHtml(text) {
+        return text.replace(/[&<>"']/g, function(m) {
+            switch (m) {
+                case '&': return '&amp;';
+                case '<': return '&lt;';
+                case '>': return '&gt;';
+                case '"': return '&quot;';
+                case "'": return '&#039;';
+            }
+        });
+    }
+
+    /**
+     * Thêm tin nhắn vào giao diện
+     * @param {string} text - Nội dung tin nhắn
+     * @param {boolean} isUser - Tin nhắn có phải từ người dùng không
+     */
+    function appendMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        // Định dạng style cho tin nhắn dựa vào việc của Bot hay của User
+        const baseClasses = "p-3 rounded-xl max-w-[85%] leading-relaxed drop-shadow-sm break-words whitespace-pre-wrap";
+        if (isUser) {
+            messageDiv.className = `${baseClasses} bg-gradient-primary text-[#004d11] rounded-tr-none self-end font-medium border border-primary/40`;
+        } else {
+            messageDiv.className = `${baseClasses} bg-surface-variant/40 text-on-surface rounded-tl-none self-start border border-outline-variant/10`;
+        }
+        
+        messageDiv.innerHTML = escapeHtml(text);
+        chatbotMessages.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    /**
+     * Bật/tắt cửa sổ chat
+     */
+    function toggleChatbot() {
+        chatbotContainer.classList.toggle('hidden');
+        if (!chatbotContainer.classList.contains('hidden')) {
+            chatbotInput.focus();
+        }
+    }
+
+    chatbotFab.addEventListener('click', toggleChatbot);
+    closeChatbot.addEventListener('click', toggleChatbot);
+
+    // Tự động điều chỉnh chiều cao của textarea khi gõ
+    chatbotInput.addEventListener('input', function() {
+        this.style.height = '40px';
+        this.style.height = (this.scrollHeight) + 'px';
+        if(this.value.trim() === '') {
+             this.style.height = '40px';
+        }
+    });
+
+    // Thêm phím tắt Enter để gửi (Shift+Enter để xuống dòng)
+    chatbotInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            chatbotForm.dispatchEvent(new Event('submit'));
+        }
+    });
+
+    chatbotForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = chatbotInput.value.trim();
+        if (!message) return;
+
+        // Xóa text input và reset chiều cao
+        chatbotInput.value = '';
+        chatbotInput.style.height = '40px';
+        
+        // Hiện tin nhắn người dùng
+        appendMessage(message, true);
+
+        // Hiện loading "..."
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'bg-surface-variant/40 text-on-surface p-3 rounded-xl rounded-tl-none self-start max-w-[85%] border border-outline-variant/10 flex gap-1.5 items-center h-[46px]';
+        loadingDiv.id = 'chatbot-loading';
+        loadingDiv.innerHTML = '<div class="w-1.5 h-1.5 bg-on-surface/50 rounded-full animate-bounce"></div><div class="w-1.5 h-1.5 bg-on-surface/50 rounded-full animate-bounce [animation-delay:0.2s]"></div><div class="w-1.5 h-1.5 bg-on-surface/50 rounded-full animate-bounce [animation-delay:0.4s]"></div>';
+        chatbotMessages.appendChild(loadingDiv);
+        scrollToBottom();
+
+        // Khóa input trong lúc chờ
+        chatbotInput.disabled = true;
+
+        // Gửi API
+        const responseText = await window.receiveChatbotResponse(message);
+
+        // Xóa loading và mở lại input
+        const loadingElement = document.getElementById('chatbot-loading');
+        if (loadingElement) loadingElement.remove();
+        chatbotInput.disabled = false;
+        chatbotInput.focus();
+
+        // Hiện tin nhắn bot
+        appendMessage(responseText, false);
+    });
+</script>
 </body></html>
